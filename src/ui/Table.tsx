@@ -1,6 +1,6 @@
 import React from "react";
 
-type Column<T> = { key: string; title: string; render?: (row: T) => React.ReactNode };
+type Column<T> = { key: keyof T; title: string; render?: (row: T) => React.ReactNode };
 
 type Props<T> = {
   columns: Column<T>[];
@@ -15,7 +15,7 @@ export default function Table<T>({ columns, data, className = "" }: Props<T>) {
         <thead>
           <tr className="text-zinc-500">
             {columns.map((c) => (
-              <th key={c.key} className="py-2 px-3">
+              <th key={String(c.key)} className="py-2 px-3">
                 {c.title}
               </th>
             ))}
@@ -25,8 +25,8 @@ export default function Table<T>({ columns, data, className = "" }: Props<T>) {
           {data.map((row, i) => (
             <tr key={i} className="border-t">
               {columns.map((c) => (
-                <td key={c.key} className="py-2 px-3">
-                  {c.render ? c.render(row) : (row as any)[c.key]}
+                <td key={String(c.key)} className="py-2 px-3">
+                  {c.render ? c.render(row) : (row[c.key] as React.ReactNode)}
                 </td>
               ))}
             </tr>

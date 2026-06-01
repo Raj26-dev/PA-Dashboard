@@ -11,6 +11,7 @@ import DonutChartCard from "@/ui/DonutChartCard";
 import FailureDonutCard from "@/ui/FailureDonutCard";
 import TopErrorCodesTable from "@/ui/TopErrorCodesTable";
 import TopMerchantsByVolume from "@/ui/TopMerchantsByVolume";
+import TransactionsComboChart from "@/ui/TransactionsComboChart";
 
 type Metric = { id: string; title: string; value: string | number };
 type Row = { time: string; event: string };
@@ -60,6 +61,7 @@ export default function DashboardPage() {
           <FailureDonutCard />
           <TopErrorCodesTable />
           <TopMerchantsByVolume/>
+          <TransactionsComboChart/>
       </div>
 
       {/* <div className="mt-4">

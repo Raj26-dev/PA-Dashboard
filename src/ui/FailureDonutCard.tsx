@@ -53,9 +53,10 @@ export default function FailureDonutCard({ title = "Failure Analysis (by Error C
   }, [data]);
 
   const total = (slices || []).reduce((s, r) => s + r.value, 0);
+  const fmt = new Intl.NumberFormat('en-US');
 
   return (
-    <Card className={className}>
+    <Card className={`${className} border-none`}>
       <div className="flex items-start justify-between">
         <div>
           <div className="text-sm text-zinc-500">{title}</div>
@@ -82,7 +83,7 @@ export default function FailureDonutCard({ title = "Failure Analysis (by Error C
                 ))}
               </Pie>
               <Tooltip
-                formatter={(value: any, name: string) => [Number(value).toLocaleString(), name]}
+                formatter={(value: any, name: string) => [new Intl.NumberFormat('en-US').format(Number(value)), name]}
                 wrapperStyle={{ boxShadow: "0 6px 18px rgba(15,23,42,0.08)", borderRadius: 8 }}
               />
             </PieChart>
@@ -90,7 +91,7 @@ export default function FailureDonutCard({ title = "Failure Analysis (by Error C
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="text-sm text-zinc-500">Total</div>
-            <div className="text-2xl font-semibold">{total.toLocaleString()}</div>
+            <div className="text-2xl font-semibold">{fmt.format(total)}</div>
           </div>
         </div>
 
@@ -105,7 +106,7 @@ export default function FailureDonutCard({ title = "Failure Analysis (by Error C
                   </div>
 
                   <div className="text-sm text-zinc-700 text-right">
-                    <div className="font-semibold">{s.value.toLocaleString()}</div>
+                    <div className="font-semibold">{fmt.format(s.value)}</div>
                     <div className="text-xs text-zinc-400">{percent(s.value, total)}</div>
                   </div>
                 </div>

@@ -54,9 +54,10 @@ export default function DonutChartCard({ title = "Transactions", data, className
   }, [data]);
 
   const total = (slices || []).reduce((s, r) => s + r.value, 0);
+  const fmt = new Intl.NumberFormat('en-US');
 
   return (
-    <Card className={className}>
+    <Card className={`${className} border-none`}>
       <div className="flex items-start justify-between">
         <div>
           <div className="text-sm text-zinc-500">{title}</div>
@@ -92,7 +93,7 @@ export default function DonutChartCard({ title = "Transactions", data, className
 
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <div className="text-sm text-zinc-500">Total transactions</div>
-            <div className="text-2xl font-semibold">{total.toLocaleString()}</div>
+            <div className="text-2xl font-semibold">{fmt.format(total)}</div>
           </div>
         </div>
 
@@ -109,7 +110,7 @@ export default function DonutChartCard({ title = "Transactions", data, className
                     </div>
 
                     <div className="text-sm text-zinc-700 text-right">
-                      <div className="font-semibold">{s.value.toLocaleString()}</div>
+                      <div className="font-semibold">{fmt.format(s.value)}</div>
                       <div className="text-xs text-zinc-400">{pct}%</div>
                     </div>
                   </div>

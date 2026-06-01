@@ -94,8 +94,9 @@ export default function LineAreaChartCard({ title = "Transactions", subtitle = "
   const baseData = data && data.length > 0 ? data : generated ?? [];
 
   return (
-    <Card className={`col-span-2 ${className}`}>
-      <div className="flex items-start justify-between mb-4">
+    // <Card className={`col-span-2 ${className}`}>
+    <div className={`col-span-2 bg-white rounded-[24px] border border-[#F1F1F1] shadow-sm p-[24px] pb-[18px] ${className}`}>
+      <div className="col-span-2 flex items-start justify-between mb-4">
         <div>
           <div className="text-sm text-zinc-500">{title}</div>
           <div className="text-lg font-semibold">{subtitle}</div>
@@ -169,6 +170,7 @@ export default function LineAreaChartCard({ title = "Transactions", subtitle = "
           <div className="font-semibold">{currency(baseData.reduce((s, r) => s + r.total, 0))}</div>
         </div>
       </div>
-    </Card>
+      </div>
+    // </Card>
   );
 }

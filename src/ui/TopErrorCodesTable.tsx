@@ -28,8 +28,10 @@ const sample: Row[] = [
 export default function TopErrorCodesTable({ title = "Top Error Codes", data, className = "", maxHeight = 220 }: Props) {
   const rows = data && data.length > 0 ? data : sample;
 
+  const fmt = new Intl.NumberFormat('en-US');
+
   return (
-    <Card className={className}>
+    <Card className={`${className} border-none`}>
       <div className="mb-3">
         <div className="text-sm text-zinc-500">{title}</div>
       </div>
@@ -49,7 +51,7 @@ export default function TopErrorCodesTable({ title = "Top Error Codes", data, cl
               <tr key={i} className="border-t last:border-b">
                 <td className="py-3 px-4 text-sm text-zinc-600">{r.code}</td>
                 <td className="py-3 px-4 text-sm text-zinc-500">{r.description}</td>
-                <td className="py-3 px-4 text-sm text-zinc-700 text-right font-medium">{r.count.toLocaleString()}</td>
+                <td className="py-3 px-4 text-sm text-zinc-700 text-right font-medium">{fmt.format(r.count)}</td>
                 <td className="py-3 px-4 text-sm text-zinc-400 text-right">{r.percent.toFixed(2)}%</td>
               </tr>
             ))}

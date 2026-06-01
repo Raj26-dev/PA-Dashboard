@@ -23,7 +23,7 @@ const DEFAULT_DATA: MerchantData[] = [
 ];
 
 function formatNumber(n: number) {
-  return n.toLocaleString();
+  return new Intl.NumberFormat('en-US').format(n);
 }
 
 function SuccessProgressBar({ value }: { value: number }) {
